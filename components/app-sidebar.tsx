@@ -159,7 +159,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const { user } = useAuth();
-  console.log("User", user?.user_metadata);
+  // console.log("User", user?.user_metadata);
   const userData = {
     name: user?.user_metadata.full_name,
     email: user?.user_metadata.email,

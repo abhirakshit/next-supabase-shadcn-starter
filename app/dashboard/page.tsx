@@ -13,6 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import {ModeToggle} from "@/components/mode-toggle";
 
 export default function Page() {
   return (
@@ -39,6 +40,7 @@ export default function Page() {
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
+            <ModeToggle/>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">

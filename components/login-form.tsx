@@ -37,9 +37,12 @@ export function LoginForm({
         email,
         password,
       });
-      if (error) throw error;
+      if (error) {
+        console.error(error);
+        router.push("/auth/login");
+      }
       // Update this route to redirect to an authenticated route. The user already has an active session.
-      router.push("/projects");
+      router.push("/dashboard");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
@@ -47,27 +50,53 @@ export function LoginForm({
     }
   };
 
+  // const signInWithGoogle = async () => {
+  //   // console.log("signInWithGoogle");
+  //   const supabase = createClient();
+  //   setIsLoading(true);
+  //   setError(null);
+  //
+  //   try {
+  //     const {error} = await supabase.auth.signInWithOAuth({
+  //       provider: "google",
+  //       // options: {
+  //       //     redirectTo: `${window.location.origin}/auth/callback`, // Optional: your post-login redirect
+  //       // },
+  //     });
+  //     if (error) {
+  //       console.error("Auth Error", error);
+  //       throw error;
+  //     }
+  //
+  //     revalidateSession();
+  //     console.log("Successfully logged in!");
+  //     router.push("/dashboard");
+  //   } catch (error: unknown) {
+  //     console.error(error);
+  //     setError(error instanceof Error ? error.message : "Google sign-in failed");
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const signInWithGoogle = async () => {
-    console.log("signInWithGoogle");
     const supabase = createClient();
     setIsLoading(true);
     setError(null);
 
     try {
-      const {error} = await supabase.auth.signInWithOAuth({
+      const {data, error} = await supabase.auth.signInWithOAuth({
         provider: "google",
-        // options: {
-        //     redirectTo: `${window.location.origin}/auth/callback`, // Optional: your post-login redirect
-        // },
-      });
-      if (error) {
-        console.error("Auth Error", error);
-        throw error;
-      }
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback?next=/dashboard`, // 👈 Important
+        },
+      })
 
-      revalidateSession();
-      console.log("Successfully logged in!");
-      router.push("/dashboard");
+      console.log("Data", data)
+      if (error) throw error;
+
+      // This never runs because the browser is redirected away above.
+      // So don't try to do anything below here.
     } catch (error: unknown) {
       console.error(error);
       setError(error instanceof Error ? error.message : "Google sign-in failed");

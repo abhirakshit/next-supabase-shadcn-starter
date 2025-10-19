@@ -58,7 +58,7 @@ export const NavigationMenuDemo = ()=> {
         <NavigationMenu viewport={false}>
             <div className="flex gap-5 items-center font-semibold mr-2 text-2xl lg:text-3xl">
                 <Link href={"/"}>
-                    Synergy.AI
+                    Awesome
                 </Link>
             </div>
             <NavigationMenuList>
