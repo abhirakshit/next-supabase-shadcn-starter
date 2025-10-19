@@ -41,7 +41,7 @@ export async function updateSession(request: NextRequest) {
   // console.log('data', data);
   const user = data?.claims;
 
-  console.log("USER", user, request.nextUrl.pathname);
+  // console.log("USER", user, request.nextUrl.pathname);
 
   if (
     request.nextUrl.pathname !== "/" &&

@@ -31,6 +31,7 @@ import {
 } from "@/components/ui/sidebar"
 import {createClient} from "@/lib/supabase/client";
 import {router} from "next/client";
+import {useAuth} from "@/hooks/authContext";
 
 export function NavUser({
   user,
@@ -42,12 +43,13 @@ export function NavUser({
   }
 }) {
   const { isMobile } = useSidebar()
-  const logout = async () => {
-    console.log('Logout press')
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    await router.push("/auth/login");
-  };
+  const { signOut } = useAuth();
+  // const logout = async () => {
+  //   console.log('Logout press')
+  //   const supabase = createClient();
+  //   await supabase.auth.signOut();
+  //   await router.push("/auth/login");
+  // };
 
   return (
     <SidebarMenu>
@@ -88,13 +90,13 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            {/*<DropdownMenuGroup>*/}
-            {/*  <DropdownMenuItem>*/}
-            {/*    <Sparkles />*/}
-            {/*    Upgrade to Pro*/}
-            {/*  </DropdownMenuItem>*/}
-            {/*</DropdownMenuGroup>*/}
-            {/*<DropdownMenuSeparator />*/}
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <Sparkles />
+                Upgrade to Pro
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <BadgeCheck />
@@ -110,7 +112,7 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={logout}>
+            <DropdownMenuItem onClick={signOut}>
               <LogOut />
               Log out
             </DropdownMenuItem>

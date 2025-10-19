@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Synergy AI",
+    title: "Title",
     description: "",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html>
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >

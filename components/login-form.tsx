@@ -60,7 +60,10 @@ export function LoginForm({
         //     redirectTo: `${window.location.origin}/auth/callback`, // Optional: your post-login redirect
         // },
       });
-      if (error) throw error;
+      if (error) {
+        console.error("Auth Error", error);
+        throw error;
+      }
 
       revalidateSession();
       console.log("Successfully logged in!");
