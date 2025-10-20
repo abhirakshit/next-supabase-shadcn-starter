@@ -51,6 +51,7 @@ export function NavUser({
   //   await router.push("/auth/login");
   // };
 
+  // console.log('user', user)
   return (
     <SidebarMenu>
       <SidebarMenuItem>

@@ -1,12 +1,14 @@
 import Image from "next/image";
-import {NavigationMenuDemo} from "@/components/nav-menu";
+import {Navbar} from "@/components/nav-home";
 
 export default function Home() {
     return (
         <>
             <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
                 <div className="w-full max-w-5xl flex justify-between items-center p-3 px-5 text-sm">
-                    <NavigationMenuDemo/>
+                    {/*<NavigationMenuDemo/>*/}
+                    {/*<NavbarHome/>*/}
+                    <Navbar/>
                 </div>
             </nav>
             <div
