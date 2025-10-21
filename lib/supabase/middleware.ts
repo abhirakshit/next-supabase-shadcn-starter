@@ -41,7 +41,7 @@ export async function updateSession(request: NextRequest) {
     const {data} = await supabase.auth.getClaims();
     // console.log('data', data);
     const user = data?.claims;
-    console.log("user", user?.app_metadata);
+    // console.log("user", user?.app_metadata);
 
     // console.log("USER", user, request.nextUrl.pathname);
     // const role = user ? await getUserRole() : null;
