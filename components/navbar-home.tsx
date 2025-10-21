@@ -20,6 +20,7 @@ import {
 import { cn } from '@/lib/utils';
 import {Button} from "@/components/ui/button";
 import {AuthButtonClient} from "@/components/auth-button-client";
+import {ModeToggle} from "@/components/mode-toggle";
 
 // Simple logo component for the navbar
 const Logo = (props: React.SVGAttributes<SVGElement>) => {
@@ -103,7 +104,7 @@ export interface NavbarHomeProps extends React.HTMLAttributes<HTMLElement> {
 
 // Default navigation links
 const defaultNavigationLinks: NavbarHomeNavItem[] = [
-  { href: '#', label: 'Home' },
+  { href: '/', label: 'Home' },
   {
     label: 'Features',
     submenu: true,
@@ -145,6 +146,8 @@ const defaultNavigationLinks: NavbarHomeNavItem[] = [
       { href: '#getting-started', label: 'Getting Started', icon: 'BookOpenIcon' },
       { href: '#tutorials', label: 'Tutorials', icon: 'LifeBuoyIcon' },
       { href: '#about-us', label: 'About Us', icon: 'InfoIcon' },
+      { href: '/dashbaord', label: 'Dashboard', icon: 'InfoIcon' },
+      { href: '/admin', label: 'Admin', icon: 'InfoIcon' },
     ],
   },
 ];
@@ -155,7 +158,7 @@ export const NavbarHome = React.forwardRef<HTMLElement, NavbarHomeProps>(
     {
       className,
       logo = <Logo />,
-      logoHref = '#',
+      logoHref = '/',
       navigationLinks = defaultNavigationLinks,
       ctaText = 'Get Started',
       ctaHref = '#get-started',
@@ -397,7 +400,10 @@ export const NavbarHome = React.forwardRef<HTMLElement, NavbarHomeProps>(
             </div>
           </div>
           {/* Right side */}
-          <AuthButtonClient />
+          <div className="flex items-end gap-4">
+            <AuthButtonClient />
+            <ModeToggle/>
+          </div>
         </div>
       </header>
     );
